@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+    .box {
+      width: 200px;
+      height: 200px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 50px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background-color: brown;
+    }
+  </style>
+  <body>
+    <div id="app" v-cloak>
+      <p>{{ message }}</p>
+      <div>
+        <input @keyup.enter="greet(greeting)" , type="text" v-model="message" />
+      </div>
+      <button @click="toggleBox">Toggle box</button>
+      <div class="box" v-if="isVisible">Box</div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      let app = Vue.createApp({
+        data() {
+          return {
+            message: 'Hello world!',
+            isVisible: false,
+          };
+        },
+
+        methods: {
+          toggleBox() {
+            this.isVisible = !this.isVisible;
+          },
+        },
+      });
+
+      app.mount('#app');
+    </script>
+  </body>
+</html>
