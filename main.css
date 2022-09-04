@@ -1,0 +1,79 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+[v-cloak] {
+  display: none;
+}
+
+#app {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+
+form {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border: 1px solid black;
+}
+form input {
+  padding: 7px;
+  outline: none;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+form input:focus::-moz-placeholder {
+  opacity: 0;
+}
+form input:focus:-ms-input-placeholder {
+  opacity: 0;
+}
+form input:focus::placeholder {
+  opacity: 0;
+}
+form button {
+  font-weight: bold;
+  font-size: 17px;
+  color: white;
+  background-color: rgb(82, 82, 82);
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  padding: 5px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  transition: 0.3s;
+}
+form button:hover {
+  opacity: 0.8;
+}/*# sourceMappingURL=main.css.map */

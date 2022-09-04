@@ -4,47 +4,67 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Vue.js 3 Basics</title>
+    <link rel="stylesheet" href="main.css" />
   </head>
-  <style>
-    [v-cloak] {
-      display: none;
-    }
-    .box {
-      width: 200px;
-      height: 200px;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 50px;
-      display: grid;
-      place-items: center;
-      color: white;
-      background-color: brown;
-    }
-  </style>
   <body>
     <div id="app" v-cloak>
-      <p>{{ message }}</p>
-      <div>
-        <input @keyup.enter="greet(greeting)" , type="text" v-model="message" />
+      <div class="container">
+        <login-form />
       </div>
-      <button @click="toggleBox">Toggle box</button>
-      <div class="box" v-if="isVisible">Box</div>
     </div>
 
     <script src="https://unpkg.com/vue@3"></script>
     <script>
-      let app = Vue.createApp({
+      let app = Vue.createApp({});
+
+      app.component('login-form', {
+        template: `
+          <form @submit.prevent="handleSubmit">
+            <h2>Login Form</h2>
+            <custom-input v-model="email" :label="emailLabel" placeholder="E-Mail" />
+            <custom-input v-model="password" :label="passwordLabel" placeholder="Password" />
+
+            <button>Log in</button>
+          </form>
+        `,
+
+        components: ['custom-input'],
+
         data() {
           return {
-            message: 'Hello world!',
-            isVisible: false,
+            email: 'mail@example.com',
+            emailLabel: 'E-Mail',
+            password: '123123',
+            passwordLabel: 'Password',
           };
         },
 
         methods: {
-          toggleBox() {
-            this.isVisible = !this.isVisible;
+          handleSubmit() {
+            console.log(this.email, this.password);
+          },
+        },
+      });
+
+      app.component('custom-input', {
+        template: `
+          <label>
+            <p>{{ label }}</p>
+            <input type="text" v-model="inputValue" />  
+          </label>
+        `,
+
+        props: ['label', 'modelValue'],
+
+        computed: {
+          inputValue: {
+            get() {
+              return this.modelValue;
+            },
+            set(value) {
+              return this.$emit('update:modelValue', value);
+            },
           },
         },
       });
